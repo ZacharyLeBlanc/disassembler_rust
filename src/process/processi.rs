@@ -35,3 +35,36 @@ pub fn get_i_names(op_code: usize) -> String {
 }
 
 // TODO processi function
+pub fn process_i_format(string: &str) -> () {
+    let op_code = process::get_op_code(string);
+    let rs = process::get_reg_name(process::get_reg_number(string, 1) as usize);
+    let rt = process::get_reg_name(process::get_reg_number(string, 2) as usize);
+    let constant = process::bin_to_dec(string, 16, 31);
+    let instruction_name = get_i_names(op_code as usize);
+
+    if instruction_name == "ERR" {
+        println!("Error: OP code was not a vaild I format instruction.");
+    }
+
+    if rs == "ERR" || rt == "ERR" {
+        println!("Error: something went wrong with the registers.");
+    }
+
+    if op_code == 4 || op_code == 5 {
+        println!("{}\t{}, {}, {}", instruction_name, rs, rt, constant * 4);
+        return;
+    } else if op_code <= 13 && op_code > 5 {
+        println!("{}\t{}, {}, {}", instruction_name, rt, rs, constant);
+        return;
+    } else if op_code >= 35 {
+        println!("{}\t{}, {}({})", instruction_name, rt, constant, rs);
+        return;
+    } else if op_code == 15 {
+        println!("{}\t{}, {}", instruction_name, rt, constant);
+        return;
+    } else {
+        println!("Error: op code was not valid.");
+        return;
+    }
+
+}

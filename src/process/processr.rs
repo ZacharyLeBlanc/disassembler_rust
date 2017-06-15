@@ -53,3 +53,35 @@ pub fn get_r_function_name(function_code: usize) -> String {
 }
 
 // TODO processr function
+pub fn process_r_format(string: &str) -> () {
+    let rs = process::get_reg_name(process::get_reg_number(string, 1) as usize);
+    let rt = process::get_reg_name(process::get_reg_number(string, 2) as usize);
+    let rd = process::get_reg_name(process::get_reg_number(string, 3) as usize);
+    let shamt = get_shitft_amount(string);
+    let funct = get_function_code(string);
+    let function_name = get_r_function_name(funct as usize);
+
+    if function_name == "ERR" {
+        println!("Error: function code was invalid");
+        return;
+    }
+
+    if rs == "ERR" || rt == "ERR" || rd == "ERR" {
+        println!("Error: something went wrong with registers.");
+        return;
+    }
+
+    if funct >= 32 {
+        println!("{}\t{}, {}, {}", function_name, rd, rs, rt);
+        return;
+    } else if funct <= 2 {
+        println!("{}\t{}, {}, {}", function_name, rd, rt, shamt);
+        return;
+    } else if funct == 8 {
+        println!("{}\t{}", function_name, rd);
+        return;
+    } else {
+        println!("Error: function code did not match one of the instructions.");
+        return;
+    }
+}
