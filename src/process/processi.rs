@@ -1,5 +1,15 @@
+// Module ProcessI
+// This module contains the helper functions for the I format instructions.
+//
+// AUTHOR: Zach LeBlanc
+// DATE: 2017-6-2014
+
 use process;
 
+// This function gets the name of the I format instructions from the op code.
+// Parameters:
+// *op_code: number of the op code (first six bits in instruction).
+// Returns: string of the name of the instruction.
 pub fn get_i_names(op_code: usize) -> String {
     /* Create a static (persistent) array of the mnemonic names,
      **    each of which is a string (char *).
@@ -23,3 +33,5 @@ pub fn get_i_names(op_code: usize) -> String {
         return String::from("ERR");
     }
 }
+
+// TODO processi function

@@ -1,13 +1,32 @@
+// Module ProcessR
+// This module contains the helper functions in order to process a R format
+// instruction.
+//
+// AUTHOR: Zach LeBlanc
+// DATE: 2017-6-15
+
 use process;
 
+// This function gets the shift amount from the instruction.
+// Parameters:
+// *string: the instruction.
+// Returns: the decimal value of the shift amount.
 pub fn get_shitft_amount(string: &str) -> i32 {
     return process::bin_to_dec(string, 21, 25);
 }
 
+// This function gets the function code from the instruction.
+// Parameters:
+// *string: the instruction.
+// Returns: the decimal value of the function code.
 pub fn get_function_code(string: &str) -> i32 {
     return process::bin_to_dec(string, 26, 31);
 }
 
+// This function gets the name of the instruction from the function code.
+// Parameters:
+// *function_code: integer of the function code.
+// Returns: string of the name of instruction.
 pub fn get_r_function_name(function_code: usize) -> String {
     /* Create a static (persistent) array of the mnemonic names,
      **    each of which is a string (char *).
@@ -26,10 +45,11 @@ pub fn get_r_function_name(function_code: usize) -> String {
     rfunc_names[42] = "slt";
     rfunc_names[43] = "sltu";
     // returns the mnemonic name for the function if it is not null
-    // TODO Do something about null index in array
     if rfunc_names[function_code] != "" {
         return String::from(rfunc_names[function_code]);
     } else {
         return String::from("ERR");
     }
 }
+
+// TODO processr function
