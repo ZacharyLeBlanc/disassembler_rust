@@ -27,6 +27,9 @@ pub fn get_i_names(op_code: usize) -> String {
     i_names[35] = "lw";
     i_names[43] = "sw";
     // returns the mnemonic name for the function if it is not null
+    if op_code > 44 {
+        return String::from("ERR");
+    }
     if i_names[op_code] != "" {
         return String::from(i_names[op_code]);
     } else {
@@ -34,7 +37,6 @@ pub fn get_i_names(op_code: usize) -> String {
     }
 }
 
-// TODO processi function
 pub fn process_i_format(string: &str) -> () {
     let op_code = process::get_op_code(string);
     let rs = process::get_reg_name(process::get_reg_number(string, 1) as usize);
@@ -44,10 +46,12 @@ pub fn process_i_format(string: &str) -> () {
 
     if instruction_name == "ERR" {
         println!("Error: OP code was not a vaild I format instruction.");
+        return;
     }
 
     if rs == "ERR" || rt == "ERR" {
         println!("Error: something went wrong with the registers.");
+        return;
     }
 
     if op_code == 4 || op_code == 5 {

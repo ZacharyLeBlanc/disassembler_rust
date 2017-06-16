@@ -1,8 +1,20 @@
 extern crate disassembler;
+use std::env;
+use std::fs::File;
+use std::io::prelude::*;
+use std::io::BufReader;
 
 fn main() {
-    disassembler::process::processj::process_j_format("00001100000000000000100111000100");
-    disassembler::process::processr::process_r_format("00000010010010000100000000100000");
-    disassembler::disassemble::disassemble_mips("00001100000000000000100111000100", 1);
-    disassembler::disassemble::disassemble_mips("00000010010010000100000000100000", 2);
+    let args: Vec<String> = env::args().collect();
+    let filename = &args[1];
+    let f = File::open(filename).expect("Error: file not found");
+    let reader = BufReader::new(f);
+    let mut i = 0;
+
+    for line in reader.lines() {
+        let input = line.unwrap();
+        let input_slice: &str = &input[..];
+        disassembler::disassemble::disassemble_mips(input_slice, i);
+        i += 1;
+    }
 }

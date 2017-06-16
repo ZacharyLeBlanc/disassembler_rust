@@ -24,8 +24,5 @@ pub fn disassemble_mips(string: &str, line_number: i32) -> () {
             println!("Error: instruction type was not valid.");
             return;
         }
-    } else {
-        println!("Error: was not a vaild MIPS instruction");
-        return;
     }
 }

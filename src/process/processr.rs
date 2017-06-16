@@ -45,6 +45,9 @@ pub fn get_r_function_name(function_code: usize) -> String {
     rfunc_names[42] = "slt";
     rfunc_names[43] = "sltu";
     // returns the mnemonic name for the function if it is not null
+    if function_code > 44 {
+        return String::from("ERR");
+    }
     if rfunc_names[function_code] != "" {
         return String::from(rfunc_names[function_code]);
     } else {
@@ -52,7 +55,6 @@ pub fn get_r_function_name(function_code: usize) -> String {
     }
 }
 
-// TODO processr function
 pub fn process_r_format(string: &str) -> () {
     let rs = process::get_reg_name(process::get_reg_number(string, 1) as usize);
     let rt = process::get_reg_name(process::get_reg_number(string, 2) as usize);
