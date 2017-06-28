@@ -39,7 +39,7 @@ pub fn verify_mips_instruction(instruction: &str, linenum: i32) -> bool {
     let length = instruction.len();
 
     if length != INSTRUCTION_LENGTH {
-        println!("ERRROR - Line {} does not have 32 characters.", linenum);
+        println!("ERROR - Line {} does not have 32 characters.", linenum);
         return false;
     }
 

@@ -11,7 +11,7 @@ use process;
 // Parameters:
 // *string: the instruction to be translated.
 // Returns: void.
-pub fn process_j_format(string: &str) -> () {
+pub fn process_j_format(string: &str, line_number: i32) -> () {
     let op_code = process::get_op_code(string);
     let address = process::bin_to_dec(string, 6, 31);
 
@@ -22,7 +22,7 @@ pub fn process_j_format(string: &str) -> () {
         println!("jal\t{}", address * 4);
         return;
     } else {
-        println!("Error: OP code was not valid.");
+        println!("Error line {}: OP code was not valid.", line_number);
         return;
     }
 }

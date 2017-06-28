@@ -55,7 +55,7 @@ pub fn get_r_function_name(function_code: usize) -> String {
     }
 }
 
-pub fn process_r_format(string: &str) -> () {
+pub fn process_r_format(string: &str, line_number: i32) -> () {
     let rs = process::get_reg_name(process::get_reg_number(string, 1) as usize);
     let rt = process::get_reg_name(process::get_reg_number(string, 2) as usize);
     let rd = process::get_reg_name(process::get_reg_number(string, 3) as usize);
@@ -64,12 +64,13 @@ pub fn process_r_format(string: &str) -> () {
     let function_name = get_r_function_name(funct as usize);
 
     if function_name == "ERR" {
-        println!("Error: function code was invalid");
+        println!("Error line {}: Function code was invalid.", line_number);
         return;
     }
 
     if rs == "ERR" || rt == "ERR" || rd == "ERR" {
-        println!("Error: something went wrong with registers.");
+        println!("Error line {}: something went wrong with registers.",
+                 line_number);
         return;
     }
 
@@ -83,7 +84,8 @@ pub fn process_r_format(string: &str) -> () {
         println!("{}\t{}", function_name, rd);
         return;
     } else {
-        println!("Error: function code did not match one of the instructions.");
+        println!("Error line {}: Function code did not match one of the instructions.",
+                 line_number);
         return;
     }
 }

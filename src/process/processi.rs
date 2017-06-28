@@ -37,7 +37,7 @@ pub fn get_i_names(op_code: usize) -> String {
     }
 }
 
-pub fn process_i_format(string: &str) -> () {
+pub fn process_i_format(string: &str, line_number: i32) -> () {
     let op_code = process::get_op_code(string);
     let rs = process::get_reg_name(process::get_reg_number(string, 1) as usize);
     let rt = process::get_reg_name(process::get_reg_number(string, 2) as usize);
@@ -45,12 +45,14 @@ pub fn process_i_format(string: &str) -> () {
     let instruction_name = get_i_names(op_code as usize);
 
     if instruction_name == "ERR" {
-        println!("Error: OP code was not a vaild I format instruction.");
+        println!("Error line {}: OP code was not a vaild I format instruction.",
+                 line_number);
         return;
     }
 
     if rs == "ERR" || rt == "ERR" {
-        println!("Error: something went wrong with the registers.");
+        println!("Error line {}: something went wrong with the registers.",
+                 line_number);
         return;
     }
 
@@ -67,8 +69,7 @@ pub fn process_i_format(string: &str) -> () {
         println!("{}\t{}, {}", instruction_name, rt, constant);
         return;
     } else {
-        println!("Error: op code was not valid.");
+        println!("Error line {}: op code was not valid.", line_number);
         return;
     }
-
 }
