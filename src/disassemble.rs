@@ -1,12 +1,21 @@
-// Module Disassemble
-// This module is the main function of this program.
-// This module contains the function which will be called to run the program.
-//
-// AUTHOR: Zach LeBLanc
-// DATE: 2017-6-15
+/// This module is used as the final step to disassemble the MIPS instruction.
+/// AUTHOR: Zach LeBlanc
+/// DATE: 2017-7-12
 
 use process;
 
+/// Prints out the instruction in assembly code
+///
+///  # Arguments
+///
+///  * 'string' - A string slice that holds the instruction in binary format
+///  * 'line_number' - A 32 bit int that represents the line number when the code is being executed
+///
+///  # Example
+///
+///  '''
+///  disassembler::disassemble::disassemble_mips(input, i);
+///  '''
 pub fn disassemble_mips(string: &str, line_number: i32) -> () {
     if process::verify_mips_instruction(string, line_number) == true {
         let instruction_type = process::get_instruction_type(process::get_op_code(string));

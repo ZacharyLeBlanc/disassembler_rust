@@ -1,32 +1,32 @@
-// Module ProcessR
-// This module contains the helper functions in order to process a R format
-// instruction.
-//
-// AUTHOR: Zach LeBlanc
-// DATE: 2017-6-15
+/// Module ProcessR
+/// This module contains the helper functions in order to process a R format
+/// instruction.
+///
+/// AUTHOR: Zach LeBlanc
+/// DATE: 2017-6-15
 
 use process;
 
-// This function gets the shift amount from the instruction.
-// Parameters:
-// *string: the instruction.
-// Returns: the decimal value of the shift amount.
+/// This function gets the shift amount from the instruction.
+/// Parameters:
+/// *string: the instruction.
+/// Returns: the decimal value of the shift amount.
 pub fn get_shitft_amount(string: &str) -> i32 {
     return process::bin_to_dec(string, 21, 25);
 }
 
-// This function gets the function code from the instruction.
-// Parameters:
-// *string: the instruction.
-// Returns: the decimal value of the function code.
+/// This function gets the function code from the instruction.
+/// Parameters:
+/// *string: the instruction.
+/// Returns: the decimal value of the function code.
 pub fn get_function_code(string: &str) -> i32 {
     return process::bin_to_dec(string, 26, 31);
 }
 
-// This function gets the name of the instruction from the function code.
-// Parameters:
-// *function_code: integer of the function code.
-// Returns: string of the name of instruction.
+/// This function gets the name of the instruction from the function code.
+/// Parameters:
+/// *function_code: integer of the function code.
+/// Returns: string of the name of instruction.
 pub fn get_r_function_name(function_code: usize) -> String {
     /* Create a static (persistent) array of the mnemonic names,
      **    each of which is a string (char *).
@@ -55,6 +55,12 @@ pub fn get_r_function_name(function_code: usize) -> String {
     }
 }
 
+/// Prints out the r format instructions from binary to assembly
+///
+/// # Arguments
+///
+/// * 'string' - the mips instruction in binary
+/// * 'line_number' - the line that the instruction is on
 pub fn process_r_format(string: &str, line_number: i32) -> () {
     let rs = process::get_reg_name(process::get_reg_number(string, 1) as usize);
     let rt = process::get_reg_name(process::get_reg_number(string, 2) as usize);

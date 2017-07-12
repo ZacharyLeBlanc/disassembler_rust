@@ -1,15 +1,15 @@
-// Module ProcessI
-// This module contains the helper functions for the I format instructions.
-//
-// AUTHOR: Zach LeBlanc
-// DATE: 2017-6-2014
+/// Module ProcessI
+/// This module contains the helper functions for the I format instructions.
+///
+/// AUTHOR: Zach LeBlanc
+/// DATE: 2017-6-2014
 
 use process;
 
-// This function gets the name of the I format instructions from the op code.
-// Parameters:
-// *op_code: number of the op code (first six bits in instruction).
-// Returns: string of the name of the instruction.
+/// This function gets the name of the I format instructions from the op code.
+/// Parameters:
+/// *op_code: number of the op code (first six bits in instruction).
+/// Returns: string of the name of the instruction.
 pub fn get_i_names(op_code: usize) -> String {
     /* Create a static (persistent) array of the mnemonic names,
      **    each of which is a string (char *).
@@ -37,6 +37,12 @@ pub fn get_i_names(op_code: usize) -> String {
     }
 }
 
+/// Processes the i format instructions from MIPS to assembly
+///
+/// # Arguments
+///
+/// * 'string' - the mips instruction in binary format
+/// * 'line_number' - the line that the instruction is on
 pub fn process_i_format(string: &str, line_number: i32) -> () {
     let op_code = process::get_op_code(string);
     let rs = process::get_reg_name(process::get_reg_number(string, 1) as usize);
