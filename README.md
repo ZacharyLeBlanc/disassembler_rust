@@ -10,7 +10,11 @@ To download:
 
 or download the zip file and unzip.
 
-Compile: <code>cargo build</code>
+Compile: 
+
+<code>cd disassembler_rust</code>
+
+<code>cargo build</code>
 
 Run the program: <code>cargo run [filename]</code>
 
