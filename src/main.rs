@@ -16,7 +16,6 @@
 ///
 /// AUTHOR: Zach LeBlanc
 /// DATE: 2017-7-12
-
 extern crate disassembler;
 use std::env;
 use std::fs::File;
@@ -47,9 +46,9 @@ fn main() {
         println!("Enter a 32 bit MIPS instruction:\nType exit to stop the program (or control-c on Unix operating systems):",);
         loop {
             let mut input = String::new();
-            io::stdin().read_line(&mut input).expect(
-                "Failed to read line",
-            );
+            io::stdin()
+                .read_line(&mut input)
+                .expect("Failed to read line");
             let output = input.trim(); // need to trim input or it will not be able to find the file
             if output.to_lowercase() == "exit" {
                 break;

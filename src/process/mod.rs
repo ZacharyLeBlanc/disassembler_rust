@@ -79,12 +79,12 @@ pub fn get_op_code(string: &str) -> i32 {
 
 /// This function returns the number of the register.
 /// reg 1 = rs, reg 2 = rt, reg 3 = rd
-// Parameters:
+/// Parameters:
 /// *string: the instruction.
 /// *reg the register you want to receive the value of.
 /// Returns: integer of the register number.
 pub fn get_reg_number(string: &str, reg: i32) -> i32 {
-    return bin_to_dec(string, ((5 * reg) + 1), (5 * (reg + 1)));
+    return bin_to_dec(string, 5 * reg + 1, 5 * reg + 1);
 }
 
 /// This function gets the type of instruction.
