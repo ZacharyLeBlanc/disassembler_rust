@@ -6,6 +6,21 @@
 /// AUTHOR: Zach LeBlanc
 /// DATE: 2017-6-15
 
+#[cfg(test)]
+mod tests {
+    use process::bin_to_dec;
+    #[test]
+    fn it_works() {
+        assert_eq!(2 + 2, 4);
+    }
+
+    #[test]
+    fn bin_to_dec_works() {
+        let num = bin_to_dec("1001", 5, 4);
+        assert_eq!(num, 0);
+    }
+}
+
 /// This function takes a string of 0 and 1 and returns the decimal value for
 /// the given numbers.
 ///
